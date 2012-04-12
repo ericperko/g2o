@@ -27,6 +27,10 @@
 #include "parameter_se2_offset.h"
 #include "vertex_se2.h"
 
+#ifdef WINDOWS
+#include <windows.h>
+#endif
+
 #ifdef G2O_HAVE_OPENGL
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
@@ -56,7 +60,7 @@ namespace g2o {
     }
     std::cerr <<  std::endl;
     setOffset(SE2(off));
-    return is.good();
+    return is.good() || is.eof();
   }
   
   bool ParameterSE2Offset::write(std::ostream& os) const {

@@ -105,7 +105,11 @@ class StructureOnlySolver : public OptimizationAlgorithm
               g2o::OptimizableGraph::Edge* e = dynamic_cast<g2o::OptimizableGraph::Edge *>(*it_t);
 
               // fix all the other vertices and remember their fix value
+#ifdef WINDOWS
+              std::vector<bool> remember_fix_status(e->vertices().size());
+#else
               bool remember_fix_status[e->vertices().size()];
+#endif
               for (size_t k = 0; k < e->vertices().size(); ++k) {
                 OptimizableGraph::Vertex* otherV = static_cast<OptimizableGraph::Vertex*>(e->vertex(k));
                 if (otherV != v) {
@@ -151,7 +155,7 @@ class StructureOnlySolver : public OptimizationAlgorithm
                   e->computeError();
                   new_chi2 += e->chi2();
                 }
-                assert(isnan(new_chi2)==false);
+                assert(g2o_isnan(new_chi2)==false);
                 double rho = (chi2 - new_chi2);
                 if (rho > 0) {
                   goodStep = true;

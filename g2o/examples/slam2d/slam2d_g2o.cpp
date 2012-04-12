@@ -18,12 +18,11 @@
 
 #include <iostream>
 
-#include <unistd.h>
-
 #include "main_window.h"
 
 #include "g2o/core/sparse_optimizer.h"
 #include "g2o/core/block_solver.h"
+#include "g2o/core/factory.h"
 #include "g2o/core/optimization_algorithm_gauss_newton.h"
 #include "g2o/core/optimization_algorithm_levenberg.h"
 #include "g2o/solvers/csparse/linear_solver_csparse.h"
@@ -31,6 +30,8 @@
 #include <QApplication>
 using namespace std;
 using namespace g2o;
+
+G2O_USE_TYPE_GROUP(slam2d);
 
 int main(int argc, char** argv)
 {
@@ -54,9 +55,5 @@ int main(int argc, char** argv)
   mw.solverLevenberg = solverLevenberg;
   mw.viewer->graph->setAlgorithm(solverGauss);
 
-  while (mw.isVisible()) {
-    qapp.processEvents();
-    usleep(10000);
-  }
-  return 0;
+  return qapp.exec();
 }
