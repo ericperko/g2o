@@ -51,6 +51,7 @@ namespace g2o {
       BaseEdge() : OptimizableGraph::Edge()
       {
         _dimension = D;
+        _delta = 1e-9;
       }
 
       virtual ~BaseEdge() {}
@@ -86,6 +87,10 @@ namespace g2o {
 
       virtual int rank() const {return _dimension;}
 
+      //! accessor functions for the delta used when calculating numeric Jacobians for this edge
+      virtual double getDelta() const { return _delta; }
+      virtual void setDelta(const double d) { _delta = d; }
+
       virtual void initialEstimate(const OptimizableGraph::VertexSet&, OptimizableGraph::Vertex*)
       {
         std::cerr << "inititialEstimate() is not implemented, please give implementation in your derived class" << std::endl;
@@ -96,6 +101,9 @@ namespace g2o {
       Measurement _measurement;
       InformationType _information;
       ErrorVector _error;
+
+      double _delta; // Delta for calculating numeric Jacobians
+
     public:
       EIGEN_MAKE_ALIGNED_OPERATOR_NEW
   };

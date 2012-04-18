@@ -104,7 +104,7 @@ void BaseBinaryEdge<D, E, VertexXiType, VertexXjType>::linearizeOplus()
   vj->lockQuadraticForm();
 #endif
 
-  const double delta = 1e-9;
+  const double delta = _delta;
   const double scalar = 1.0 / (2*delta);
   ErrorVector errorBak;
   ErrorVector errorBeforeNumeric = _error;
