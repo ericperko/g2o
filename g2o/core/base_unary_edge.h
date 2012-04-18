@@ -80,6 +80,7 @@ namespace g2o {
       using BaseEdge<D,E>::_error;
       using BaseEdge<D,E>::_vertices;
       using BaseEdge<D,E>::_dimension;
+      using BaseEdge<D,E>::_delta;
 
       JacobianXiOplusType _jacobianOplusXi;
 

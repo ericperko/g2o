@@ -89,6 +89,7 @@ namespace g2o {
       using BaseEdge<D,E>::_error;
       using BaseEdge<D,E>::_vertices;
       using BaseEdge<D,E>::_dimension;
+      using BaseEdge<D,E>::_delta;
 
       std::vector<HessianHelper> _hessian;
       std::vector<JacobianType> _jacobianOplus; ///< jacobians of the edge (w.r.t. oplus)

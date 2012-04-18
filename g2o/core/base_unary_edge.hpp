@@ -68,7 +68,7 @@ void BaseUnaryEdge<D, E, VertexXiType>::linearizeOplus()
   vi->lockQuadraticForm();
 #endif
 
-  const double delta = 1e-9;
+  const double delta = _delta;
   const double scalar = 1.0 / (2*delta);
   ErrorVector error1;
   ErrorVector errorBeforeNumeric = _error;

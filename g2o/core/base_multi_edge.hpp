@@ -99,7 +99,7 @@ void BaseMultiEdge<D, E>::linearizeOplus()
   }
 #endif
 
-  const double delta = 1e-9;
+  const double delta = _delta;
   const double scalar = 1.0 / (2*delta);
   ErrorVector errorBak;
   ErrorVector errorBeforeNumeric = _error;
