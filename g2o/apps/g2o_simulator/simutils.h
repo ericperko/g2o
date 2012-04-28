@@ -24,15 +24,38 @@
 // NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef G2O_SIMULATOR2D_
-#define G2O_SIMULATOR2D_
+#ifndef G2O_SIMUTILS_H_
+#define G2O_SIMUTILS_H_
 
 #include "simulator2d_base.h"
-#include "sensor_odometry2d.h"
-#include "sensor_pose2d.h"
-#include "sensor_pointxy.h"
-#include "sensor_pointxy_bearing.h"
-#include "sensor_pointxy_offset.h"
+#include "pointsensorparameters.h"
+#include "g2o_simulator_api.h"
 
+namespace g2o {
+  // -1: outside
+  // 0: p1Clipped
+  // 1: p2clipped
+  // 2: inside
+  // 3: all clipped
+
+  int clipSegmentCircle(Vector2d& p1, Vector2d& p2, double r);
+
+  // -1: outside
+  // 0: p1Clipped
+  // 1: p2clipped
+  // 2: inside
+  int clipSegmentLine(Vector2d& p1, Vector2d& p2, double a, double b, double c );
+  
+
+  // -1: outside
+  // 0: p1Clipped
+  // 1: p2clipped
+  // 2: inside
+  // 3: all clipped
+  int clipSegmentFov(Vector2d& p1, Vector2d& p2, double min, double max);
+
+  
+  Vector2d computeLineParameters(const Vector2d& p1, const Vector2d& p2);
+}
 
 #endif

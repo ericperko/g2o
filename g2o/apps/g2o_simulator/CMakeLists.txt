@@ -7,7 +7,12 @@ ADD_LIBRARY(g2o_simulator_library ${G2O_LIB_TYPE}
    sensor_pointxy.cpp sensor_pointxy.h
    sensor_pointxy_bearing.cpp sensor_pointxy_bearing.h
    sensor_pointxy_offset.cpp sensor_pointxy_offset.h
-   simulator2d.h
+   simutils.cpp simutils.h
+   # sensor_segment2d.cpp  sensor_segment2d.h
+   # sensor_segment2d_line.cpp  sensor_segment2d_line.h
+   # simutils.cpp  simutils.h
+   # sensor_segment2d_pointline.cpp  sensor_segment2d_pointline.h
+   # simulator2d.h
    
    simulator3d_base.h
    sensor_odometry3d.cpp sensor_odometry3d.h
@@ -37,6 +42,13 @@ ADD_EXECUTABLE(g2o_simulator3d_application
 )
 TARGET_LINK_LIBRARIES(g2o_simulator3d_application g2o_simulator_library types_slam3d types_slam2d core)
 SET_TARGET_PROPERTIES(g2o_simulator3d_application PROPERTIES OUTPUT_NAME g2o_simulator3d${EXE_POSTFIX})
+
+
+INSTALL(TARGETS g2o_simulator_library g2o_simulator3d_application
+  RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin
+  LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib
+)
 
 INSTALL(TARGETS g2o_simulator_library g2o_simulator2d_application g2o_simulator3d_application
   RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/bin

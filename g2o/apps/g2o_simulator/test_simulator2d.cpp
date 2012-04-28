@@ -46,12 +46,13 @@ int main(int argc, char** argv) {
   bool hasPoseSensor;
   bool hasPointSensor;
   bool hasPointBearingSensor;
+  bool hasSegmentSensor;
   bool hasCompass;
   bool hasGPS;
 
+
   std::string outputFilename;
   arg.param("simSteps", simSteps, 100, "number of simulation steps");
-  arg.param("nLandmarks", nlandmarks, 1000, "number of landmarks");
   arg.param("worldSize", worldSize, 25.0, "size of the world");
   arg.param("hasOdom",        hasOdom, false,  "the robot has an odometry" );
   arg.param("hasPointSensor", hasPointSensor, false, "the robot has a point sensor" );
@@ -59,6 +60,7 @@ int main(int argc, char** argv) {
   arg.param("hasPoseSensor",  hasPoseSensor, false,  "the robot has a pose sensor" );
   arg.param("hasCompass",     hasCompass, false, "the robot has a compass");
   arg.param("hasGPS",         hasGPS, false, "the robot has a GPS");
+  arg.param("hasSegmentSensor", hasSegmentSensor, false, "the robot has a segment sensor" );
   arg.paramLeftOver("graph-output", outputFilename, "simulator_out.g2o", "graph file which will be written", true);
 
 
@@ -74,6 +76,8 @@ int main(int argc, char** argv) {
     landmark->vertex()->setEstimate(Vector2d(x,y));
     world.addWorldObject(landmark);
   }
+
+
   Robot2D robot(&world, "myRobot");
   world.addRobot(&robot);
 
@@ -121,7 +125,6 @@ int main(int argc, char** argv) {
     bearingSensor->setInformation(bearingSensor->information()*1000);
     ss << "-pointBearing";
   }
-  
 
   
   robot.move(SE2());

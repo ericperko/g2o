@@ -48,11 +48,13 @@ namespace g2o {
   G2O_REGISTER_TYPE(EDGE_SE2_OFFSET, EdgeSE2Offset);
   G2O_REGISTER_TYPE(EDGE_SE2_POINTXY_OFFSET, EdgeSE2PointXYOffset);
 
+ 
   G2O_REGISTER_ACTION(VertexSE2WriteGnuplotAction);
   G2O_REGISTER_ACTION(VertexPointXYWriteGnuplotAction);
   G2O_REGISTER_ACTION(EdgeSE2WriteGnuplotAction);
   G2O_REGISTER_ACTION(EdgeSE2PointXYWriteGnuplotAction);
   G2O_REGISTER_ACTION(EdgeSE2PointXYBearingWriteGnuplotAction);
+
 
 #ifdef G2O_HAVE_OPENGL
   G2O_REGISTER_ACTION(VertexSE2DrawAction);
@@ -60,5 +62,6 @@ namespace g2o {
   G2O_REGISTER_ACTION(EdgeSE2DrawAction);
   G2O_REGISTER_ACTION(EdgeSE2PointXYDrawAction);
   G2O_REGISTER_ACTION(EdgeSE2PointXYBearingDrawAction);
+
 #endif
 } // end namespace
